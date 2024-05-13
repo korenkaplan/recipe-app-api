@@ -1,0 +1,21 @@
+# The version of the docker compose syntax.
+version: "3.9"
+services:
+# The name of our service
+  app:
+    build: 
+      # buld our context from the root directory
+      context: .
+      # if running through this docker compose file (only in development), create a build argument called DEV and set it to true.
+      args:
+        - DEV=true
+      # map port 8000 from our local machine to the port oninside the docker container.
+    ports:
+      - "8000:8000"
+      # map directories from our project to the container. in order to automatically sync the code in our project to the code in the container.
+    volumes:
+      - ./app:/app
+      # The command that used to run the service(usually we override the command but this is the default command)
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
+

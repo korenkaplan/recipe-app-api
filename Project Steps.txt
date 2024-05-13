@@ -1,0 +1,11 @@
+1. Project Setup:
+    1.1. Create a new github repository for the project and cloned it.
+    1.2. Create a Docker Token for the project.
+    1.3. Create requirements.txt file.
+    1.4. Create Dockerfile and initialize it.
+    1.5. create .dockerignore file and initialize it.
+    1.6. run the docker build.
+    1.7. create and build the docker-compose.yml file.
+    1.8. Create the requirements.dev.txt file and the "DEV" build argument to Dockerfile and to docker-compose.
+    1.9. Create the flake8 configuration file inside the app folder not the root folder.
+
