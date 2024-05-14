@@ -9,3 +9,5 @@
     1.8. Create the requirements.dev.txt file and the "DEV" build argument to Dockerfile and to docker-compose.
     1.9. Create the flake8 configuration file inside the app folder not the root folder.
 
+2. Configure Github Actions:
+    2.1
