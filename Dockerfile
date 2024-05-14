@@ -28,6 +28,11 @@ ARG DEV=false
 RUN python -m venv /py && \
     # Upgrade pip inside the virtual environment
     /py/bin/pip install --upgrade pip && \
+    # Install the postgresql client, the client package we need install inside our alpine image.
+    apk add --update --no-cache postgresql-client && \
+    # Group the dependencies installed ( build-base, postgresql-dev, musl-dev) for the installion of psycog2 package in a folder called tmp-build-deps
+    apk add --update --no-cache --virtual .tmp-build-deps \
+        build-base postgresql-dev musl-dev && \
     # Install dependencies from requirements.txt
     /py/bin/pip install -r /tmp/requirements.txt && \
     # Check if the build argument DEV is true means we are in development so install the dev dependencies(shell syntax)
@@ -36,6 +41,8 @@ RUN python -m venv /py && \
     fi && \
     # Clean up temporary files
     rm -rf /tmp && \
+    # Remove the packages we installed from .tmp-build-deps after installtion we don't need them.
+    apk del .tmp-build-deps && \
     # Create a non-root user named "django-user"
     adduser \
         --disabled-password \
